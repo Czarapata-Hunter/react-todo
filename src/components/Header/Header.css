@@ -6,10 +6,19 @@
 
   display: flex;
   flex-direction: row;
+  padding: 0px;
 }
 
 .site {
   align-items: center;
   justify-content: left;
   padding-left: 30px;
+  height: 40px;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-content: center;
 }

@@ -11,7 +11,6 @@ function App() {
         <Route path="/auth/:type" component={Auth} />
         <Route exact path="/" />
       </Switch>
-      {/* <Auth /> */}
     </div>
   );
 }

@@ -8,9 +8,12 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState(currentUser);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isActive, setIsActive] = useState(false);
 
   return (
-    <UserContext.Provider value={{ user, setUser, email, setEmail, password, setPassword }}>
+    <UserContext.Provider
+      value={{ user, setUser, email, setEmail, password, setPassword, isActive, setIsActive }}
+    >
       {children}
     </UserContext.Provider>
   );
