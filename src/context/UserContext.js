@@ -6,11 +6,17 @@ const UserContext = createContext();
 const UserProvider = ({ children }) => {
   const currentUser = getUser();
   const [user, setUser] = useState(currentUser);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  return <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>;
+  return (
+    <UserContext.Provider value={{ user, setUser, email, setEmail, password, setPassword }}>
+      {children}
+    </UserContext.Provider>
+  );
 };
 
-const useUser = () => {
+const useUserContext = () => {
   const data = useContext(UserContext);
 
   if (!data) {
@@ -19,4 +25,4 @@ const useUser = () => {
   return data;
 };
 
-export { UserProvider, useUser };
+export { UserProvider, useUserContext };
