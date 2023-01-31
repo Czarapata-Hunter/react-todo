@@ -1,10 +1,11 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState, useContext } from 'react';
 import { getTodos } from '../services/todos.js';
 
 const TodosContext = createContext();
 
 const TodosProvider = ({ children }) => {
   const [todo, setTodo] = useState([]);
+  const [name, setName] = useState('');
   useEffect(() => {
     const fetchTodos = async () => {
       try {
@@ -16,7 +17,20 @@ const TodosProvider = ({ children }) => {
     };
     fetchTodos();
   }, []);
-  return <TodosContext.Provider value={{ todo, setTodo }}>{children}</TodosContext.Provider>;
+  return (
+    <TodosContext.Provider value={{ todo, setTodo, name, setName }}>
+      {children}
+    </TodosContext.Provider>
+  );
 };
 
-export { TodosContext, TodosProvider };
+const useTodosContext = () => {
+  const data = useContext(TodosContext);
+
+  if (!data) {
+    throw new Error('useTodos must be encompassed in a TodosProvider');
+  }
+  return data;
+};
+
+export { useTodosContext, TodosProvider };
