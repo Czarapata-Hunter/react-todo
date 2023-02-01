@@ -5,7 +5,7 @@ const TodosContext = createContext();
 
 const TodosProvider = ({ children }) => {
   const [todo, setTodo] = useState([]);
-  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
   useEffect(() => {
     const fetchTodos = async () => {
       try {
@@ -18,7 +18,7 @@ const TodosProvider = ({ children }) => {
     fetchTodos();
   }, []);
   return (
-    <TodosContext.Provider value={{ todo, setTodo, name, setName }}>
+    <TodosContext.Provider value={{ todo, setTodo, description, setDescription }}>
       {children}
     </TodosContext.Provider>
   );

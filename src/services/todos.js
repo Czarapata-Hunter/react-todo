@@ -7,6 +7,7 @@ export async function getTodos() {
 }
 
 export async function createTodo(description) {
-  const response = await client.from('react-todo').insert([{ description }]).single();
+  if (!description) return;
+  const response = await client.from('react-todo').insert({ description }).single();
   return checkError(response);
 }
